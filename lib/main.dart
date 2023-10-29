@@ -25,7 +25,7 @@ class _SliderExampleState extends State<SliderExample> {
   double sliderSizedValue = 10;
   bool isBold = false;
   bool islineThrough = false;
-
+  List<TextDecoration> decoracionesTexto = [];
   // String change() {
   //   Decoration:
   //   TextDecoration.lineThrough;
@@ -52,10 +52,20 @@ class _SliderExampleState extends State<SliderExample> {
                   color: Color.fromRGBO(sliderRedValue.toInt(),
                       sliderGreenValue.toInt(), sliderBlueValue.toInt(), 1),
                   fontSize: sliderSizedValue,
-                  decoration: islineThrough
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
+                  decoration: TextDecoration.combine(
+                    // [
+                    //   TextDecoration.lineThrough,
+                    //   TextDecoration.overline,
+                    //   TextDecoration.underline
+                    // ],
+                    decoracionesTexto,
+                  ),
+
+                  //  islineThrough
+                  //     ? TextDecoration.lineThrough
+                  //     : TextDecoration.none,
                   fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+
                   //4 SLIDERS
                   //1S - REDVALUE
                   //2S - GRENVALUE
@@ -141,6 +151,7 @@ class _SliderExampleState extends State<SliderExample> {
                 subtitle: Text("Este es el checkbox para tachar"),
                 onChanged: (juanita) {
                   islineThrough = juanita!;
+                  decoracionesTexto.add(TextDecoration.lineThrough);
                   setState(() {});
                 },
               ),
